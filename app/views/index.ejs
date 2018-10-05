@@ -1,0 +1,181 @@
+<html>
+    <head>
+        <title>Agenda</title>
+        <meta charset="utf-8">
+        <!-- bootstrap - link cdn -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link href="css/style.css" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script>
+            $(document).ready(function(){
+				$('#btn_nova_tarefa').click(function(){
+					$.ajax({
+						url: '/form_adicionar_tarefa',
+						method: 'get',
+						success: function(data){
+							$('#form_adicionar_tarefa').html(data);
+						}
+					});
+                });
+                
+                $('.btn-editar').click(function(){
+                    $.ajax({
+                        url: '/form_editar_tarefa/' + $(this).val(),
+                        method: 'get',
+                        success: function(data){
+                            $('#form_editar_tarefa').html(data);
+                        }
+                    });
+                });
+            });
+        </script>
+    </head>
+    <body>
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/">Agenda</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <div class="nav-link">
+                                <a id="btn_nova_tarefa" data-toggle="modal" data-target="#novaTarefa">Nova Tarefa</a>
+                            </div>
+                        </li>
+                    </ul>
+                    <a href="/logout"> 
+                        <button type="button" class="btn btn-danger">Sair</button>
+                    </a>               
+                </div>
+            </div>
+        </nav>
+        
+        <div class="modal fade" id="novaTarefa" tabindex="-1" role="dialog" aria-labelledby="novaTarefa" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Nova Tarefa</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form action="/cadastrar_tarefa" method="post">
+                        <div class="modal-body">
+                            <div id="form_adicionar_tarefa"></div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Salvar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="editaTarefa" tabindex="-1" role="dialog" aria-labelledby="editaTarefa" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Editar Tarefa</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form action="/editar_tarefa" method="post">
+                        <div class="modal-body">
+                            <div id="form_editar_tarefa"></div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Editar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row horizontal-offset-30">
+                <% if(tarefas.length > 0){ %>
+                    <% for(let i = 0; i < tarefas.length; i++){ %>
+                        <% let data_tarefa = new Date(tarefas[i]._id.data_tarefa)%>
+                        <div class="card card-index text-center">
+                            <div class="card-body">
+                                <%= data_tarefa.getDate() + 1 %>/<%= data_tarefa.getMonth() + 1 %>/<%= data_tarefa.getFullYear() %>
+                            </div>
+                            <div class="card-footer text-muted">
+                                <a href="#" class="btn_expandir_tarefas" data-toggle="modal" data-target="#modal_<%= data_tarefa.toISOString() %>" >Tarefas</a> <span class="badge badge-pill badge-success"><%= tarefas[i].quantidade_de_tarefas %></span>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="modal_<%= data_tarefa.toISOString() %>" tabindex="-1" role="dialog" aria-labelledby="modal_<%= data_tarefa.toISOString() %>" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title"><%= data_tarefa.getDate() + 1 %>/<%= data_tarefa.getMonth() + 1 %>/<%= data_tarefa.getFullYear() %></h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    
+                                    <div class="modal-body">
+                                        <% for(let j = 0; j < tarefas[i].tarefas.length; j++){ %>
+                                            <%
+                                                let cor = 'secondary';
+
+                                                switch(tarefas[i].tarefas[j].cor_da_tarefa){
+                                                    case 'azul_escuro':
+                                                        cor = 'primary';
+                                                        break;
+                                                    case 'azul_claro':
+                                                        cor = 'info';
+                                                        break;
+                                                    case 'vermelho':
+                                                        cor = 'danger';
+                                                        break;
+                                                    case 'amarelo':
+                                                        cor = 'warning';
+                                                        break;
+                                                    case 'verde':
+                                                        cor = 'success';
+                                                        break;
+                                                    case 'cinza':
+                                                        cor = 'secondary';
+                                                        break;
+                                                    default:
+                                                        cor = 'secondary';
+                                                        break;
+                                                }  
+                                            %>
+
+                                            <div class="card text-white bg-<%= cor %> mb-3 card-tarefa">
+                                                <div class="card-body">
+                                                    <h5 class="card-title"><%= tarefas[i].tarefas[j].titulo %></h5>                                    
+                                                    <p class="card-text"><%= tarefas[i].tarefas[j].descricao %></p>
+                                                    <a href="#" class="card-link">
+                                                        <button type="button" value="<%= tarefas[i].tarefas[j].id_tarefa %>" class="btn btn-editar btn-primary" data-toggle="modal" data-target="#editaTarefa" data-dismiss="modal">
+                                                            Editar
+                                                        </button>
+                                                    </a>
+                                                    <a href="/deletar_tarefa/<%= tarefas[i].tarefas[j].id_tarefa %>" class="card-link">
+                                                        <button type="button" class="btn btn-danger">
+                                                            Deletar
+                                                        </button>
+                                                    </a>                        
+                                                </div>
+                                            </div>
+                                        <% } %>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <% } %>
+                <% } %>
+            </div>
+        </div>
+    </body> 
+</html>

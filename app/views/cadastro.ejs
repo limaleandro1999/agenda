@@ -1,0 +1,49 @@
+<html>
+    <head>
+        <title>Cadastro</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link href="css/style.css" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>     
+    </head>    
+    <body>
+        <div class="container vertical-offset-80">
+            <div class="col-sm-3">
+            </div>
+            <div class="col-sm-6">
+                <div class="card form-usuario">
+                    <div class="card-header">
+                        <h4>Cadastro</h4>
+                    </div>
+                    <div class="card-body">
+                        <form action="/cadastrar" method="post">
+                            <div class="form-group">
+                                <label for="nome">Nome</label>
+                                <input type="text" name="nome" class="form-control" id="nome" placeholder="Nome">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="text" name="email" class="form-control" id="email" placeholder="Email">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="senha">Senha</label>
+                                <input type="password" name="senha" class="form-control" id="senha" placeholder="Senha">
+                            </div>
+                            
+                            <input type="submit" class="btn btn-success" value="Cadastro">
+                            <a href="/login"><input type="button" class="btn btn-primary" value="Sou cadastrado"></a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+            </div>
+        </div>
+    </body>
+</html>

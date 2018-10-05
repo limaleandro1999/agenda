@@ -1,0 +1,26 @@
+<div class="form-group">
+    <label for="label_titulo">Titulo da tarefa</label>
+    <input type="text" class="form-control" name="titulo" id="titulo" placeholder="Título" value="<%= (tarefa.titulo !== undefined) ? tarefa.titulo : '' %>">
+</div>
+<div class="form-group">
+    <label for="label_descricao">Descrição da tarefa</label>
+    <textarea class="form-control" name="descricao" id="descricao" placeholder="Descreva tarefa"><%= (tarefa.descricao !== undefined) ? tarefa.descricao : "" %></textarea>
+</div>
+<div class="form-group">
+    <label for="label_data">Data da tarefa</label>
+    <input type="date" class="form-control" name="data_tarefa" id="data_tarefa" placeholder="Data" value="<%= (tarefa.data_tarefa !== undefined) ? tarefa.data_tarefa.toISOString().split('T')[0] : '' %>">
+</div>
+<% if(tarefa._id !== undefined){ %>
+    <input type="hidden" name="id_tarefa" value="<%= tarefa._id %>">
+<% } %>
+<div class="form-group">
+    <label for="label_cor">Cor da tarefa</label>
+    <select class="form-control" name="cor_da_tarefa" id="cor_da_tarefa">
+        <option value="azul_escuro">Azul escuro</option>
+        <option value="azul_claro">Azul claro</option>
+        <option value="amarelo">Amarelo</option>
+        <option value="verde">Verde</option>
+        <option value="vermelho">Vermelho</option>
+        <option value="cinza">Cinza</option>
+    </select>
+</div>

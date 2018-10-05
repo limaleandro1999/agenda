@@ -1,0 +1,42 @@
+.vertical-offset-80 {
+    padding-top: 5rem;
+}
+
+.vertical-offset-30 {
+    padding-top: 30px;
+}
+
+.horizontal-offset-30{
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+.card-index{
+    width: 9em;
+    margin-top: 1rem;
+    margin-left: 1rem;
+    box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.2), 0 5px 19px 0 rgba(0, 0, 0, 0.19);
+}
+
+.card-tarefa{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.form-usuario{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.img-responsive {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: auto;
+}
+
+img {
+    vertical-align: middle;
+}
+
+body {
+    background-color: #F5F2F2;
+}
