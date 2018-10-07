@@ -31,7 +31,7 @@ app.use(function(req, res, next){
     }
 });
 
-consign().
+consign({cwd: process.cwd()+"/app"}).
     include('app/routes')
     .then('app/controllers')
     .then('app/dao')
