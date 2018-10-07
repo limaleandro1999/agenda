@@ -106,7 +106,7 @@
                         <% let data_tarefa = new Date(tarefas[i]._id.data_tarefa)%>
                         <div class="card card-index text-center">
                             <div class="card-body">
-                                <%= data_tarefa.getDate() + 1 %>/<%= data_tarefa.getMonth() + 1 %>/<%= data_tarefa.getFullYear() %>
+                                <%= data_tarefa.getDate() %>/<%= data_tarefa.getMonth() + 1 %>/<%= data_tarefa.getFullYear() %>
                             </div>
                             <div class="card-footer text-muted">
                                 <a href="#" class="btn_expandir_tarefas" data-toggle="modal" data-target="#modal_<%= data_tarefa.toISOString() %>" >Tarefas</a> <span class="badge badge-pill badge-success"><%= tarefas[i].quantidade_de_tarefas %></span>
