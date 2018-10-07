@@ -19,6 +19,7 @@ app.use(expressSession({
     saveUninitialized : false
 }));
 
+/*
 app.use(function(req, res, next){
     if(req.path !== '/cadastro' && req.path !== '/login' && req.path !== '/cadastrar' && req.path !== '/autenticar'){
         if(req.session.email === undefined){
@@ -30,9 +31,9 @@ app.use(function(req, res, next){
         next();
     }
 });
-
-consign({cwd: process.cwd()}).
-    include('app/routes')
+*/
+consign({cwd: process.cwd()})
+    .include('app/routes')
     .then('app/controllers')
     .then('app/dao')
     .then('config/connection.js')
