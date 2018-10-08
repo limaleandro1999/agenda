@@ -35,19 +35,18 @@ app.use(function(req, res, next){
     }
 });
 
-/*
 consign({cwd: process.cwd()})
-    .include('app/routes')
-    .then('app/controllers')
-    .then('app/dao')
-    .then('config/connection.js')
+    .include(process.cwd() + 'app/routes')
+    .then(process.cwd() + 'app/controllers')
+    .then(process.cwd() + 'app/dao')
+    .then(process.cwd() + 'config/connection.js')
     .into(app);
-*/
 
+/*
 load('app/routes')
     .then('app/controllers')
     .then('app/dao')
     .then('config/connection.js')
     .into(app);
-
+*/
 module.exports = app;
