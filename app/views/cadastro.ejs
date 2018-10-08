@@ -11,6 +11,21 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>     
     </head>    
     <body>
+        <% 
+            let validacaoNome = [], validacoesEmail = [], validacoesSenha = [];
+
+            if(validacao.length > 0){ 
+                for(var i = 0; i < validacao.length; i++){
+                    if(validacao[i].param === 'nome'){
+                        validacaoNome.push(validacao[i].msg);
+                    }else if(validacao[i].param === 'email'){
+                        validacoesEmail.push(validacao[i].msg);
+                    }else if(validacao[i].param === 'senha'){
+                        validacoesSenha.push(validacao[i].msg);
+                    }
+                }
+            } 
+        %>
         <div class="container vertical-offset-80">
             <div class="row">
                 <div class="col-sm-3">
@@ -25,16 +40,49 @@
                                 <div class="form-group">
                                     <label for="nome">Nome</label>
                                     <input type="text" name="nome" class="form-control" id="nome" placeholder="Nome">
+                                    
+                                    <% if(validacaoNome.length > 0){ %>
+                                        <div class="alert alert-danger">
+                                            <ul>
+                                                <li>
+                                                    <%= validacaoNome[0] %>                                           
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    <% } %> 
                                 </div>
 
                                 <div class="form-group">
                                     <label for="email">Email</label>
                                     <input type="text" name="email" class="form-control" id="email" placeholder="Email">
+                                    <% if(validacoesEmail.length > 0){ %>
+                                        <div class="alert alert-danger">
+                                            <ul>
+                                                <% for(var j = 0; j < validacoesEmail.length; j++){ %>
+                                                    <li>
+                                                        <%= validacoesEmail[j] %>
+                                                    </li>
+                                                <% } %>
+                                            </ul>
+                                        </div>
+                                    <% } %> 
                                 </div>
 
                                 <div class="form-group">
                                     <label for="senha">Senha</label>
                                     <input type="password" name="senha" class="form-control" id="senha" placeholder="Senha">
+                                    
+                                    <% if(validacoesSenha.length > 0){ %>
+                                        <div class="alert alert-danger">
+                                            <ul>
+                                                <% for(var j = 0; j < validacoesSenha.length; j++){ %>
+                                                    <li>
+                                                        <%= validacoesSenha[j] %>
+                                                    </li>
+                                                <% } %>
+                                            </ul>
+                                        </div>
+                                    <% } %>
                                 </div>
                                 
                                 <input type="submit" class="btn btn-success" value="Cadastro">

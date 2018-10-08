@@ -3,6 +3,7 @@ const express = require('express'),
     consign = require('consign'),
     bodyParser = require('body-parser'),
     expressSession = require('express-session'),
+    expressValidator = require('express-validator');
     load = require('express-load');
 
 const app = express();
@@ -13,6 +14,8 @@ app.set('views', './app/views');
 app.use(express.static('./app/public'));
 
 app.use(bodyParser.urlencoded({extended : true}));
+
+app.use(expressValidator());
 
 app.use(expressSession({
     secret: 'sdãsdasdfçasdflkãsdflsfdçlkãsdfapeokdlfkãsdlfkdçlk',
