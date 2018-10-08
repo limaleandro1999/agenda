@@ -65,7 +65,7 @@ TarefaDAO.prototype.getTarefas = function(id_usuario, req, res){
         if(err){
             console.log(err);
         }else{
-            res.render('index', {tarefas: result});
+            res.render('index', {tarefas: result, session : req.session});
         }
     });
 }
