@@ -18,4 +18,8 @@ module.exports = function(application){
     application.get('/deletar_tarefa/:id', function(req, res){
         application.app.controllers.tarefas.deletarTarefa(application, req, res);
     });
+
+    application.post('/pesquisa_tarefa_por_data', function(req, res){
+        application.app.controllers.tarefas.pesquisaTarefaPorData(application, req, res);
+    });
 }

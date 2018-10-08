@@ -11,9 +11,19 @@ module.exports.cadastrarTarefa = function(application, req, res){
 }
 
 module.exports.inicio = function(application, req, res){
+    let data_tarefa = new Date();
     let TarefaDAO = new application.app.dao.tarefaDAO();
     
-    TarefaDAO.getTarefas(req.session.id_usuario, req, res);
+    TarefaDAO.getTarefas(req.session.id_usuario, data_tarefa, req, res);
+}
+
+module.exports.pesquisaTarefaPorData = function(application, req, res){
+    let data = new Date(req.body.data_tarefa);
+    let data_tarefa = new Date(data.getFullYear(), data.getMonth() + 1);
+    
+    let TarefaDAO = new application.app.dao.tarefaDAO();
+    
+    TarefaDAO.getTarefas(req.session.id_usuario, data_tarefa, req, res);
 }
 
 module.exports.editaTarefa = function(application, req, res){

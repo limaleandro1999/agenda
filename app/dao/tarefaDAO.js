@@ -24,14 +24,16 @@ TarefaDAO.prototype.inserirTarefa = function(tarefa, res){
     });
 }
 
-TarefaDAO.prototype.getTarefas = function(id_usuario, req, res){
-    let mes = new Date().getMonth() + 1;
+TarefaDAO.prototype.getTarefas = function(id_usuario, data_tarefa, req, res){
+    let mes = data_tarefa.getMonth() + 1;
+    let ano = data_tarefa.getFullYear();
+    
     Tarefa.aggregate([
         {
             $match : {
                 data_tarefa: {
-                    $gte: new Date('2018-'+ mes +'-1'),
-                    $lt: new Date('2018-'+ mes +'-30')
+                    $gte: new Date(ano + '-'+ mes +'-1'),
+                    $lt: new Date(ano + '-'+ mes +'-31')
                 },
                 id_usuario: ObjectId(id_usuario)
             }

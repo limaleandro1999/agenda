@@ -50,11 +50,16 @@
                             </div>
                         </li>
                     </ul>
-                    <div class="margin-text-rigth text-white">                    
+                    <form class="form-inline mr-sm-2 margin-text-top" action="/pesquisa_tarefa_por_data" method="post">
+                        <input class="form-control mr-sm-2" type="month" name="data_tarefa" >
+                        <button type="submit" class="btn btn-success my-2 my-sm-0">Pesquisar</button>
+                    </form>
+
+                    <div class="mr-sm-2 text-white">                    
                         Olá, <%= session.usuario %>        
                     </div>
                     <a href="/logout"> 
-                        <button type="button" class="btn btn-danger">Sair</button>
+                        <button type="button" class="btn btn-danger mr-sm-2">Sair</button>
                     </a>               
                 </div>
                 
