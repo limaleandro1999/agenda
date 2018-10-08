@@ -24,11 +24,22 @@ module.exports.cadastro = function(application, req, res){
 }
 
 module.exports.login = function(application, req, res){
-    res.render('login');
+    res.render('login', {validacao : ''});
 }
 
 module.exports.autenticar = function(application, req, res){
     let usuario = req.body;
+
+    req.assert('email', 'O campo email deve ser preenchido!').notEmpty();
+    req.assert('email', 'O email deve está no formato exemplo@email.com').isEmail();
+    req.assert('senha', 'O campo senha deve ser preenchido!').notEmpty();
+
+    let erros = req.validationErrors();
+    
+    if(erros){
+        res.render('login', {validacao : erros});
+        return;
+    }
 
     let UsuarioDAO = new application.app.dao.usuarioDAO();
 

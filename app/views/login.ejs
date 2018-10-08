@@ -11,6 +11,19 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>   
     </head>    
     <body>
+        <%
+            let validacoesEmail = [], validacaoSenha = [];
+
+            if(validacao.length > 0){
+                for(var i = 0; i < validacao.length; i++){
+                    if(validacao[i].param === 'email'){
+                        validacoesEmail.push(validacao[i].msg);
+                    }else if(validacao[i].param === 'senha'){
+                        validacaoSenha.push(validacao[i].msg);
+                    }
+                }
+            }
+        %>
         <div class="container vertical-offset-80">
             <div class="row">
                 <div class="col-sm-3"></div>
@@ -24,11 +37,33 @@
                                 <div class="form-group">
                                     <label for="email">Email</label>
                                     <input type="text" name="email" class="form-control" id="email" placeholder="Email">
+                                    <% if(validacoesEmail.length > 0){ %>
+                                        <div class="alert alert-danger">
+                                            <ul>
+                                                <% for(var j = 0; j < validacoesEmail.length; j++){ %>
+                                                    <li>
+                                                        <%= validacoesEmail[j] %>
+                                                    </li>
+                                                <% } %>
+                                            </ul>
+                                        </div>
+                                    <% } %>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="senha">Senha</label>
                                     <input type="password" name="senha" class="form-control" id="senha" placeholder="Senha">
+                                    <% if(validacaoSenha.length > 0){ %>
+                                        <div class="alert alert-danger">
+                                            <ul>
+                                                <% for(var j = 0; j < validacaoSenha.length; j++){ %>
+                                                    <li>
+                                                        <%= validacaoSenha[j] %>
+                                                    </li>
+                                                <% } %>
+                                            </ul>
+                                        </div>
+                                    <% } %>
                                 </div>
                                 
                                 <input type="submit" class="btn btn-success" value="Entrar">
