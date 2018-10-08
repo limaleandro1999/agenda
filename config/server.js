@@ -1,6 +1,5 @@
 require('dotenv').config();
 const express = require('express'),
-    consign = require('consign'),
     bodyParser = require('body-parser'),
     expressSession = require('express-session'),
     expressValidator = require('express-validator');
@@ -35,18 +34,10 @@ app.use(function(req, res, next){
     }
 });
 
-consign({cwd: process.cwd()})
-    .include(process.cwd() + 'app/routes')
-    .then(process.cwd() + 'app/controllers')
-    .then(process.cwd() + 'app/dao')
-    .then(process.cwd() + 'config/connection.js')
-    .into(app);
-
-/*
 load('app/routes')
     .then('app/controllers')
     .then('app/dao')
     .then('config/connection.js')
     .into(app);
-*/
+
 module.exports = app;
